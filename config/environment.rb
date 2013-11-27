@@ -4,7 +4,6 @@ require File.join(File.dirname(__FILE__), 'boot')
 POST_LOAD_BLOCKS = [] unless Object.const_defined?("POST_LOAD_BLOCKS")
 
 Rails::Initializer.run do |config|
-  ::ActiveSupport::Deprecation.silenced = true
   config.frameworks -= [:action_web_service]
 
   config.active_record.pluralize_table_names = false
@@ -16,7 +15,7 @@ Rails::Initializer.run do |config|
   config.action_controller.ip_spoofing_check = false
 
   config.after_initialize do
-    ActionController::Base.session_options[:secure] = t2config(:use_ssl)
+    ActionController::Base.session_options[:secure] = true
   end
 end
 
