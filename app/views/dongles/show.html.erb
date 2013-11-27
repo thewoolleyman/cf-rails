@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @dongle.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @dongle.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_dongle_path(@dongle) %> |
+<%= link_to 'Back', dongles_path %>
