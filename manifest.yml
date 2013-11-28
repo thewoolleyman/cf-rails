@@ -3,7 +3,7 @@ applications:
 - name: cf-rails
   memory: 1G
   instances: 1
-  command: rake db:migrate && script/server
+  command: bundle exec rake db:migrate && bundle exec script/server
   host: cf-rails
   domain: cfapps.io
   path: .
