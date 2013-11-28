@@ -3,12 +3,13 @@ applications:
 - name: cf-rails
   memory: 1G
   instances: 1
+  command: rake db:migrate && script/server
   host: cf-rails
   domain: cfapps.io
   path: .
   services:
-    elephantsql-cf-rails:
-      label: elephantsql
-      provider: elephantsql
+    cleardb-cf-rails:
+      label: cleardb
+      provider: cleardb
       version: n/a
-      plan: turtle
+      plan: spark
