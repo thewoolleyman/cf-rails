@@ -1,0 +1,35 @@
+generic: &generic
+  #database: don't specify one here!  Set it below.
+  adapter: mysql2
+  host: localhost
+  username: root
+  password: password
+  socket: /tmp/mysql.sock
+  encoding: utf8
+
+development:
+  database: cf-rails-dev
+  <<: *generic
+
+test:
+  database: cf-rails-test
+  <<: *generic
+
+<%
+  if ENV['VCAP_SERVICES']
+    mydb = JSON.parse(ENV['VCAP_SERVICES'])["cleardb-n/a"]
+    credentials = mydb.first["credentials"]
+  else
+    credentials = {}
+  end
+%>
+
+production:
+  database: cf-rails-production
+  adapter: mysql2
+  host: <%= credentials["host"] %>
+  username: <%= credentials["username"] %>
+  password: <%= credentials["password"] %>
+  database: <%= credentials["database"] %>
+  port: <%= credentials["port"] %>
+  encoding: utf8

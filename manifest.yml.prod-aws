@@ -5,5 +5,11 @@ applications:
   instances: 1
   command: bundle exec rake db:migrate && bundle exec script/server -p $PORT
   host: cf-rails
-  domain: 10.244.0.34.xip.io
+  domain: cfapps.io
   path: .
+  services:
+    cleardb-cf-rails:
+      label: cleardb
+      provider: cleardb
+      version: n/a
+      plan: spark
